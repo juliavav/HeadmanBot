@@ -1,0 +1,24 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true
+  },
+  "profiles": {
+    "HeadmanBot": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:8443",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "POSTRES_HOST": "localhost",
+        "POSTRES_PORT": "5432",
+        "POSTRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "123456789",
+        "POSTGRES_DB": "postgres",
+        "BOT_TOKEN": "1343580796:AAHJckPPKVohRQyLQyRUQ7Uya3qydep3qPs",
+        "SOCKS_5_HOST": "3.133.83.33",
+        "SOCKS_5_PORT": "1080"
+      }
+    }
+  }
+}
