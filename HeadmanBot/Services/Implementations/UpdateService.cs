@@ -1,12 +1,10 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using HeadmanBot.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using File = System.IO.File;
 
 namespace HeadmanBot.Services.Implementations
 {
@@ -14,11 +12,13 @@ namespace HeadmanBot.Services.Implementations
     {
         private readonly IBotService botService;
         private readonly IScheduleService scheduleService;
+        private readonly ILogger<UpdateService> logger;
 
-        public UpdateService(IBotService botService, IScheduleService scheduleService)
+        public UpdateService(IBotService botService, IScheduleService scheduleService, ILogger<UpdateService> logger)
         {
             this.botService = botService;
             this.scheduleService = scheduleService;
+            this.logger = logger;
         }
 
         public async Task EchoAsync(Update update)
@@ -37,7 +37,23 @@ namespace HeadmanBot.Services.Implementations
                     break;
 
                 case MessageType.Document:
-                    await botService.Client.SendTextMessageAsync(message.Chat.Id, "doc");
+                    
+                    try
+                    {
+                        await using var memoryStream = new MemoryStream();
+                        var file = await botService.Client.GetFileAsync(update.Message.Document.FileId);
+                        await botService.Client.DownloadFileAsync(file.FilePath, memoryStream);
+                        using TextReader textReader = new StreamReader(memoryStream);
+                        var json = textReader.ReadToEnd();
+
+                        var subjectModels = scheduleService.DeserializeScheduleAsync(json);
+                        await scheduleService.UpdateScheduleAsync(subjectModels, message.Chat.Id);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.LogError(e.Message);
+                        await botService.Client.SendTextMessageAsync(message.Chat.Id, "Некорректный файл. Невозможно обновить расписание");
+                    }
                     break;
             }
         }

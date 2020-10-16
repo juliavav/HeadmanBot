@@ -48,7 +48,7 @@ namespace HeadmanBot
                 botOptions.Socks5Port = Convert.ToInt32(Environment.GetEnvironmentVariable("SOCKS_5_PORT"));
             });
 
-            services.AddControllers().AddNewtonsoftJson();;
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
