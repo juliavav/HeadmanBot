@@ -10,8 +10,7 @@ namespace HeadmanBot.Data.Entities
         public Constants.WeekType? WeekType { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public string Room { get; set; }
-        public string HomeWork { get; set; }
-        
+
         public Subject Subject { get; set; }
     }
 }

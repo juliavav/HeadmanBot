@@ -5,6 +5,6 @@ namespace HeadmanBot.Services.Interfaces
 {
     public interface IUpdateService
     {
-        Task EchoAsync(Update update);
+        Task ProcessMessageAsync(Update update);
     }
 }

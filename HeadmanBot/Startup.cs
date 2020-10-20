@@ -1,5 +1,8 @@
 using System;
+using AutoMapper;
 using HeadmanBot.Data;
+using HeadmanBot.Repositories.Implementations;
+using HeadmanBot.Repositories.Interfaces;
 using HeadmanBot.Services.Implementations;
 using HeadmanBot.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +34,7 @@ namespace HeadmanBot
             services.AddScoped<IUpdateService, UpdateService>();
             services.AddSingleton<IBotService, BotService>();
             services.AddSingleton<IScheduleService, ScheduleService>();
+            services.AddSingleton<IGroupRepository, GroupRepository>();
             
             services.AddDbContext<DataContext>(options =>
                 options.UseNpgsql(GetDbConnectionString()));
@@ -49,6 +53,7 @@ namespace HeadmanBot
             });
 
             services.AddControllers().AddNewtonsoftJson();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

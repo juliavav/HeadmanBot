@@ -21,7 +21,7 @@ namespace HeadmanBot.Controllers
         public async Task<IActionResult> Post([FromBody]Update update)
         {
             
-                await updateService.EchoAsync(update);
+                await updateService.ProcessMessageAsync(update);
             
 
             return Ok();
