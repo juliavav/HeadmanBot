@@ -13,7 +13,7 @@ namespace HeadmanBot.Data
             Configuration = configuration;
         }
 
-        public DbSet<Class> Classes { get; set; }
+        public DbSet<Timetable> Timetables { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Group> Groups { get; set; }
 

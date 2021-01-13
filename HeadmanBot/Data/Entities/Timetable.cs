@@ -3,7 +3,7 @@ using HeadmanBot.Helpers;
 
 namespace HeadmanBot.Data.Entities
 {
-    public class Class
+    public class Timetable
     {
         public int Id { get; set; }
         public string TimeString { get; set; }

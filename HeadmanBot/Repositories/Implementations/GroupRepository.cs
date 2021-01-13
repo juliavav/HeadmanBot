@@ -27,6 +27,12 @@ namespace HeadmanBot.Repositories.Implementations
             return factory().Groups.SingleOrDefaultAsync(x=>x.TelegramId == telegramId);
         }
 
+        public Task UpdateAsync(Group group)
+        {
+            factory().Groups.Update(group);
+            return factory().SaveChangesAsync();
+        }
+
         public Task<bool> IsExist(long telegramId)
         {
             return factory().Groups.AnyAsync(x=>x.TelegramId == telegramId);

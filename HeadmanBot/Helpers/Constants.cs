@@ -5,7 +5,8 @@ namespace HeadmanBot.Helpers
         public enum WeekType
         {
             Upper,
-            Lower
+            Lower,
+            Both
         }
         
     }

@@ -46,13 +46,12 @@ namespace HeadmanBot.Services.Implementations
                     switch (args.First())
                     {
                         case "/start":
-                            var group = new GroupModel
+                            var group = new Group
                             {
                                 Name = update.Message.Chat.Title,
                                 TelegramId = update.Message.Chat.Id
                             };
-                            var model = mapper.Map<Group>(group);
-                            await groupRepository.AddAsync(model);
+                            await groupRepository.AddAsync(group);
                             break;
                         case "/today":
                             break;

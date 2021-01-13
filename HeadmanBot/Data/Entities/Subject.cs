@@ -10,6 +10,6 @@ namespace HeadmanBot.Data.Entities
         public string Description { get; set; }
 
         public Group Group { get; set; }
-        public ICollection<Class> Classes { get; set; }
+        public ICollection<Timetable> Timetables { get; set; }
     }
 }

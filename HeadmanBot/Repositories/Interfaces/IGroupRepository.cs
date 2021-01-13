@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using HeadmanBot.Data.Entities;
-using HeadmanBot.Data.Models;
 
 namespace HeadmanBot.Repositories.Interfaces
 {
@@ -8,6 +7,7 @@ namespace HeadmanBot.Repositories.Interfaces
     {
         Task AddAsync(Group group);
         Task<Group> GetAsync(long telegramId);
+        Task UpdateAsync(Group group);
         Task<bool> IsExist(long telegramId);
     }
 }
